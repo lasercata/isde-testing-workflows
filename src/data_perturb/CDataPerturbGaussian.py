@@ -32,9 +32,8 @@ class CDataPerturbGaussian(CDataPerturb):
         def sigma(self, value):
             self._sigma = value
 
-        def data_perturb(self, data : np.ndarray) -> np.ndarray:
-            if data.shape[1] != 1:
-                raise ValueError("Input data has to be flatten.")
+        def data_perturbation(self, data : np.ndarray) -> np.ndarray:
+            super().data_perturbation(data)
             for i in range(data.shape[0]):
                 noise = self.sigma * np.random.randn()
                 data[i] = np.clip(data[i] + noise, self.min_value, self.max_value)
