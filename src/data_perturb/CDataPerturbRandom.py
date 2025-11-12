@@ -32,6 +32,7 @@ class CDataPerturbRandom(CDataPerturb):
     self._K = int(value)
   
   def data_perturbation(self, x):
+    super().data_perturbation(x)
     if self._K > 0:
       indices = np.random.choice(x.size, min((self._K, x.size)), replace=False)
       x[indices] = np.random.uniform(self._min_value, self._max_value, indices.size)
